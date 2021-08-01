@@ -1,0 +1,83 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+<div id="search-component">
+    <label for="search-box">Country Search</label>
+    <input #searchBox id="search-box" [formControl]="searchInput" />
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+            <td mat-cell *matCellDef="let country"> {{country.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="alpha3Code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> alpha3Code </th>
+            <td mat-cell *matCellDef="let country"> {{country.alpha3Code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="population">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> population </th>
+            <td mat-cell *matCellDef="let country"> {{country.population}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="capital">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> capital </th>
+            <td mat-cell *matCellDef="let country"> {{country.capital}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" aria-label="Select page of periodic countries">
+    </mat-paginator>
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator> -->
+</div>
+<!-- <div class="main-container">
+    <div class="table-container">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>alpha3Code</th>
+                    <th>population</th>
+                    <th>capital</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr *ngFor="let count of countries ">
+                    <td><span>{{count.name}}</span></td>
+                    <td><span>{{count.alpha3Code}}</span></td>
+                    <td><span>{{count.population}}</span></td>
+                    <td><span>{{count.capital}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> -->
+<!-- <div class="page">
+    <label id="pre" for="" style="font-size:20px;color:grey;margin: 10px" (click)="prePage(page-1);pagination(page-1)">
+        pre </label>
+    <div *ngFor="let page of [].constructor(numberOfPAge)  && [].constructor(updatedWindowSize) ; let i = index "
+        style="    margin: 5px    ">
+        <label for="" (click)="pagination(i+paginationIndex)">{{ i+paginationIndex}}</label>
+    </div>
+    <label id="next" for="" style="font-size:20px;color:grey;margin: 10px" (click)="nextPage(page+1);pagination(page+1)">
+        Next >></label>
+</div> -->
+
+
+<!-- <div class="page">
+    <label for="" style="font-size:20px;color:grey; margin: 10px"> << pre </label>
+    <div *ngFor="let page of [].constructor(windowSize) ; let i = index"style="    margin: 5px    ">
+        <label (click)="pagination(page)" >{{i+va}}</label>
+    </div>
+    <label id="next" for="" style="font-size:20px;color:grey;margin: 10px" (click)="nextPage(page);pagination(page+1)"> next >></label>
+</div> -->
