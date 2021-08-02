@@ -8,23 +8,21 @@ import { CountryService } from '../country.service';
 @Component({
   selector: 'app-country-form',
   templateUrl: './country-form.component.html',
-  styleUrls: ['./country-form.component.css']
+  styleUrls: ['./country-form.component.css'],
 })
 export class CountryFormComponent implements OnInit {
+  country = { name: '', alpha3Code: '', capital: '', population: 0 };
+  constructor(
+    private countriesSerivce: CountryService,
+    private router: Router
+  ) {}
 
-  country={name:'',alpha3Code:'',capital:'',population:0};
-  constructor(private countriesSerivce:CountryService,
-    private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
-    this.countriesSerivce.countries.unshift(this.country)
-    
-    this.router.navigate(['home'])
-   
-}
+    this.countriesSerivce.countries.unshift(this.country);
+    this.country = { name: '', alpha3Code: '', capital: '', population: 0 };
 
-
+    //this.router.navigate(['home']);
+  }
 }
