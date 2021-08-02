@@ -16,6 +16,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +29,7 @@ import { MatSortModule } from '@angular/material/sort';
     CountryFormComponent,
   ],
   imports: [MatPaginatorModule,
+    MatInputModule,
     MatTableModule,
     MatSliderModule,
     CommonModule,
@@ -32,14 +39,13 @@ import { MatSortModule } from '@angular/material/sort';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-  
-
+    MatFormFieldModule,
     MatPaginatorModule,
-
     MatSliderModule,
-  
     MatSortModule,
     MatTableModule,
+    MatFormFieldModule, // it's redundant here since MatInputModule already exports it
+
   ],
   providers: [CountryComponent],
   bootstrap: [AppComponent]
