@@ -6,9 +6,6 @@
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
 
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
@@ -34,14 +31,12 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-          </tr>
+        </tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" aria-label="Select page of periodic countries">
     </mat-paginator>
-    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons 
-                 aria-label="Select page of periodic elements">
-  </mat-paginator> -->
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator> -->
 </div>
 <!-- <div class="main-container">
     <div class="table-container">
@@ -84,3 +79,26 @@
     </div>
     <label id="next" for="" style="font-size:20px;color:grey;margin: 10px" (click)="nextPage(page);pagination(page+1)"> next >></label>
 </div> -->
+<div id="wrapper">
+    <div [class.loading]="(loading$ | async)" id="shopping-list" *ngIf="!(error$ | async); else error">
+        <div id="list">
+            <h2>
+                Shopping List
+            </h2>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+<ng-template #error>
+    <h2>{{(error$ | async)?.message}}</h2>
+</ng-template>
+
+
+<div *ngFor="let country of countries$ | async">
+    {{ country.name}}
+
+</div>

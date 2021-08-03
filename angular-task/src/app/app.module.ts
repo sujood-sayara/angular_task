@@ -4,31 +4,30 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CountryComponent } from './country/country.component';
-import { MatSliderModule } from '@angular/material/slider'
+import { MatSliderModule } from '@angular/material/slider';
 import { CountryService } from './country.service';
 import { JwPaginationModule } from 'jw-angular-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { CountryFormComponent } from './country-form/country-form.component'; // <-- import the module
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './reducers/country.reducer';
 import { MatInputModule } from '@angular/material/input';
-
+import { EffectsModule } from '@ngrx/effects';
+import {CountryEffects} from './country.effect'
 @NgModule({
-  declarations: [
-    AppComponent,
-    CountryComponent,
-    CountryFormComponent,
-  ],
-  imports: [MatPaginatorModule,
+  declarations: [AppComponent, CountryComponent, CountryFormComponent],
+  imports: [
+    MatPaginatorModule,
     MatInputModule,
     MatTableModule,
     MatSliderModule,
@@ -45,9 +44,11 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatTableModule,
     MatFormFieldModule, // it's redundant here since MatInputModule already exports it
-
+    BrowserModule,
+    StoreModule.forRoot({ country: reducer }),
+    EffectsModule.forRoot([CountryEffects])
   ],
   providers: [CountryComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
