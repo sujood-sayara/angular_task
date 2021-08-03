@@ -79,26 +79,3 @@
     </div>
     <label id="next" for="" style="font-size:20px;color:grey;margin: 10px" (click)="nextPage(page);pagination(page+1)"> next >></label>
 </div> -->
-<div id="wrapper">
-    <div [class.loading]="(loading$ | async)" id="shopping-list" *ngIf="!(error$ | async); else error">
-        <div id="list">
-            <h2>
-                Shopping List
-            </h2>
-
-
-
-        </div>
-
-    </div>
-</div>
-
-<ng-template #error>
-    <h2>{{(error$ | async)?.message}}</h2>
-</ng-template>
-
-
-<div *ngFor="let country of countries$ | async">
-    {{ country.name}}
-
-</div>
